@@ -76,21 +76,37 @@ const inputStore = (req, res) => {
     }
 
     try {
-        db.query(`INSERT INTO store (iduser, nama, alamat, rtrw, kelurahan, kecamatan, provinsi, terdaftar) 
-        VALUE (?,?,?,?,?,?,?,?)`, [post.iduser, post.nama, post.alamat, post.rtrw, post.kelurahan, post.kecamatan, post.provinsi],
-            function (err, rows, fields) {
-                if (err) {
-                    res.status(500).send({
-                        status: false,
-                        data: err
-                    })
+        db.query('SELECT nama FROM store WHERE nama=?', [post.nama], function (err, rows) {
+            if (err) {
+                res.status(500).send({
+                    status: false,
+                    data: err
+                })
+            } else {
+                if (rows.length == 0) {
+                    db.query(`INSERT INTO store (iduser, nama, alamat, rtrw, kelurahan, kecamatan, provinsi, terdaftar) VALUE (?,?,?,?,?,?,?,?)`,
+                        [post.iduser, post.nama, post.alamat, post.rtrw, post.kelurahan, post.kecamatan, post.provinsi],
+                        function (err, rows, fields) {
+                            if (err) {
+                                res.status(500).send({
+                                    status: false,
+                                    data: err
+                                })
+                            } else {
+                                res.status(200).send({
+                                    status: true,
+                                    data: 'Data Berhasil Di Input'
+                                })
+                            }
+                        })
                 } else {
                     res.status(200).send({
-                        status: true,
-                        data: 'Data Berhasil Di Input'
+                        status: false,
+                        data: "Nama toko sudah terpakai"
                     })
                 }
-            })
+            }
+        })
     } catch (error) {
         res.status(500).send({
             status: false,
