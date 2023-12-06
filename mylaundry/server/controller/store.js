@@ -77,7 +77,7 @@ const inputStore = (req, res) => {
 
     try {
         db.query(`INSERT INTO store (iduser, nama, alamat, rtrw, kelurahan, kecamatan, provinsi, terdaftar) 
-        VALUE (?,?,?,?,?,?,?,?)`, [post.iduser, post.nama, post.alamat, post.rtrw, post.kelurahan, post.kecamatan, post.provinsi],
+        VALUE (?,?,?,?,?,?,?,?)`, [post.iduser, post.nama, post.alamat, post.rtrw, post.kelurahan, post.kecamatan, post.provinsi, post.terdaftar],
             function (err, rows, fields) {
                 if (err) {
                     res.status(500).send({
