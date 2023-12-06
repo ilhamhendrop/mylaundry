@@ -100,10 +100,10 @@ const inputStore = (req, res) => {
 }
 
 const dataPemilikStore = (req, res) => {
-    var iduser = req.params.iduser
+    var id = req.params.id
 
     try {
-        db.query(`SELECT * FROM store WHERE iduser=?`, [iduser],
+        db.query(`SELECT * FROM store WHERE iduser=?`, [id],
             function (err, rows) {
                 if (err) {
                     res.status(500).send({
@@ -134,11 +134,10 @@ const updateStore = (req, res) => {
         kelurahan: req.body.kelurahan,
         kecamatan: req.body.kecamatan,
         provinsi: req.body.provinsi,
-        terdaftar: dateWib(date)
     }
 
     try {
-        db.query(`UPDATE store SET nama=?, alamat=?, rtrw=?, kelurahan=?, kecamatan=?, provinsi=? WHERE iduser=?`,
+        db.query(`UPDATE store SET nama=?, alamat=?, rtrw=?, kelurahan=?, kecamatan=?, provinsi=? WHERE idstore=?`,
             [post.nama, post.alamat, post.rtrw, post.kelurahan, post.kecamatan, post.provinsi, post.id],
             function (err, rows) {
                 if (err) {
@@ -163,11 +162,11 @@ const updateStore = (req, res) => {
 
 const deleteStore = (req, res) => {
     var hapus = {
-        idstore: req.params.idstore
+        id: req.params.id
     }
 
     try {
-        db.query(`DELETE FROM store idstore=?`, [hapus.iduser, hapus.idstore],
+        db.query(`DELETE FROM store idstore=?`, [hapus.iduser, hapus.id],
             function (err, rows) {
                 if (err) {
                     res.status(500).send({
