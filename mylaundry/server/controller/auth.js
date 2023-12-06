@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const md5 = require('md5')
 const config = require('../config/secret')
+const dateWib = require('../middleware/date') 
 
 const register = (req, res) => {
     var date = new Date()
@@ -15,10 +16,6 @@ const register = (req, res) => {
         password: md5(req.body.password, 10),
         role: req.body.role,
         terdaftar: dateWib(date)
-    }
-
-    function dateWib(date) {
-        return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
     }
 
     var query = `SELECT email FROM ?? WHERE ??=?`
