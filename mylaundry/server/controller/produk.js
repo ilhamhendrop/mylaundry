@@ -2,9 +2,9 @@ const db = require('../db/db')
 const dateWib = require('../middleware/date')
 
 const dataAllProduk = (req, res) => {
-    var idproduk = req.params.idproduk
+    var id = req.params.id
     try {
-        db.query(`SELECT * FROM produk WHERE idproduk=?`, [idproduk],
+        db.query(`SELECT * FROM produk WHERE idstore=?`, [id],
             function (err, rows) {
                 if (err) {
                     res.status(500).send({
