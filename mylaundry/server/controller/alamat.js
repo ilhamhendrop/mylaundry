@@ -9,16 +9,15 @@ const dataAlamat = (req, res) => {
         SELECT
             user.iduser,
             user.name,
-            alamat.notelp,
-            alamat.alamats,
-            alamat.alamat,
-            alamat.rtrw,
-            alamat.kelurahan,
-            alamat.kecamatan,
-            alamat.provinsi
-        FROM alamat
+            address.notelp,
+            address.alamat,
+            address.rtrw,
+            address.kelurahan,
+            address.kecamatan,
+            address.provinsi
+        FROM address
         INNER JOIN user
-            ON alamat.iduser = user.iduser
+            ON address.iduser = user.iduser
         WHERE user.iduser=?`, [id],
             function (err, rows) {
                 if (err) {
@@ -57,7 +56,7 @@ const inputAlamat = (req, res) => {
     }
 
     try {
-        db.query(`INSERT INTO alamat (iduser, notelp, alamat, rtrw, kelurahan, kecamatan, provinsi, terdaftar, terupdate) VALUE (?,?,?,?,?,?,?,?,?)`,
+        db.query(`INSERT INTO address (iduser, notelp, alamat, rtrw, kelurahan, kecamatan, provinsi, terdaftar, terupdate) VALUE (?,?,?,?,?,?,?,?,?)`,
             [post.iduser, post.notelp, post.alamat, post.rtrw, post.kelurahan, post.kecamatan, post.provinsi, post.terdaftar, post.terupdate],
             function (err, rows) {
                 if (err) {
@@ -96,7 +95,7 @@ const updateAlamat = (req, res) => {
     }
 
     try {
-        db.query(`UPDATE alamat SET notelp=?, alamat=?, rtrw=?, kelurahan=?, kecamatan=?, provinsi=?, terupdate=? WHERE idalamat=?`,
+        db.query(`UPDATE address SET notelp=?, alamat=?, rtrw=?, kelurahan=?, kecamatan=?, provinsi=?, terupdate=? WHERE idaddress=?`,
             [update.notelp, update.alamat, update.rtrw, update.kelurahan, update.kecamatan, update.provinsi, update.terupdate, update.id],
             function (err, rows) {
                 if (err) {
@@ -123,7 +122,7 @@ const deleteAlamat = (req, res) => {
     var id = req.params.id
 
     try {
-        db.query(`DELETE FROM alamat WHERE idalamat=?`, [id],
+        db.query(`DELETE FROM address WHERE idaddress=?`, [id],
             function (err, rows) {
                 if (err) {
                     res.status(500).send({
