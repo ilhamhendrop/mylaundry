@@ -4,6 +4,7 @@ const index = require('../respone/index')
 const auth = require('../controller/auth')
 const store = require('../controller/store')
 const produk = require('../controller/produk')
+const alamat = require('../controller/alamat')
 const verify = require('../middleware/verifikasi')
 
 const router = express.Router()
@@ -23,6 +24,11 @@ router.get('/admin/produk/:id', verify.admin, produk.dataAllProduk)
 router.post('/admin/produk/input', verify.admin, produk.inputProduk)
 router.patch('/admin/produk/update/:id', verify.admin, produk.updateProduk)
 router.delete('/admin/produk/delete/:id', verify.admin, produk.deleteProduk)
+
+router.get('/admin/alamat/:id', verify.admin, alamat.dataAlamat)
+router.post('/admin/alamat/input', verify.admin, alamat.inputAlamat)
+router.patch('/admin/alamat/update/:id', verify.admin, alamat.updateAlamat)
+router.delete('/admin/alamat/delete/:id', verify.admin, alamat.deleteAlamat)
 
 //pemilik
 router.get('/pemilik/store/:id', verify.pemilik, store.dataPemilikStore)
