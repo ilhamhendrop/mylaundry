@@ -4,7 +4,7 @@ const dateWib = require('../middleware/date')
 const dataBankAll = (req, res) => {
     try {
         db.query(`
-            SELECT 
+            SELECT
                 user.iduser,
                 store.idstore,
                 user.name,
@@ -43,7 +43,7 @@ const dataCekBankId = (req, res) => {
 
     try {
         db.query(`
-            SELECT 
+            SELECT
                 user.iduser,
                 store.idstore,
                 user.name,
@@ -82,7 +82,8 @@ const dataBankStore = (req, res) => {
 
     try {
         db.query(`
-            SELECT 
+            SELECT
+                bank.idbank, 
                 store.idstore,
                 store.nama AS nama_store,
                 bank.norek,
@@ -198,7 +199,7 @@ const updateBank = (req, res) => {
 
     try {
         db.query(`UPDATE bank SET idstore=?, norek=?, namabank=?, nama=?, terupdate=? WHERE idbank=?`,
-            [update.idstore, update.norek, update.namabank, update.nama, update.terupdate],
+            [update.idstore, update.norek, update.namabank, update.nama, update.terupdate, update.id],
             function (err, rows) {
                 if (err) {
                     res.status(500).send({
