@@ -5,6 +5,7 @@ const auth = require('../controller/auth')
 const store = require('../controller/store')
 const produk = require('../controller/produk')
 const alamat = require('../controller/alamat')
+const bank = require('../controller/bank')
 const verify = require('../middleware/verifikasi')
 
 const router = express.Router()
@@ -29,6 +30,14 @@ router.get('/admin/alamat/:id', verify.admin, alamat.dataAlamat)
 router.post('/admin/alamat/input', verify.admin, alamat.inputAlamat)
 router.patch('/admin/alamat/update/:id', verify.admin, alamat.updateAlamat)
 router.delete('/admin/alamat/delete/:id', verify.admin, alamat.deleteAlamat)
+
+router.get('/admin/bank/all', verify.admin, bank.dataBankAll)
+router.get('/admin/bank/pemilik/:id', verify.admin, bank.dataCekBankId)
+router.get('/admin/bank/store/:id', verify.admin, bank.dataBankStore)
+router.get('/admin/bank/user/:id', verify.admin, bank.dataUserStore)
+router.post('/admin/bank/input', verify.admin, bank.inputBank)
+router.patch('/admin/bank/update/:id', verify.admin, bank.updateBank)
+router.delete('/admin/bank/delete/:id', verify.admin, bank.deleteBank)
 
 //pemilik
 router.get('/pemilik/store/:id', verify.pemilik, store.dataPemilikStore)
