@@ -19,19 +19,19 @@ const dataBankAll = (req, res) => {
                 ON bank.idstore = store.idstore 
             ORDER BY user.iduser`, function (err, rows) {
             if (err) {
-                res.status(500).send({
+                res.status(500).json({
                     status: false,
                     data: err
                 })
             } else {
-                res.status(200).send({
+                res.status(200).json({
                     status: true,
                     data: rows
                 })
             }
         })
     } catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             status: false,
             data: error
         })
@@ -58,19 +58,19 @@ const dataCekBankId = (req, res) => {
                 ON bank.idstore = store.idstore 
             WHERE user.iduser=?`, [id], function (err, rows) {
             if (err) {
-                res.status(500).send({
+                res.status(500).json({
                     status: false,
                     data: err
                 })
             } else {
-                res.status(200).send({
+                res.status(200).json({
                     status: true,
                     data: rows
                 })
             }
         })
     } catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             status: false,
             data: error
         })
@@ -93,19 +93,19 @@ const dataBankStore = (req, res) => {
                 ON bank.idstore = store.idstore 
             WHERE store.idstore=?`, [id], function (err, rows) {
             if (err) {
-                res.status(500).send({
+                res.status(500).json({
                     status: false,
                     data: err
                 })
             } else {
-                res.status(200).send({
+                res.status(200).json({
                     status: true,
                     data: rows
                 })
             }
         })
     } catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             status: false,
             data: error
         })
@@ -128,19 +128,19 @@ const dataUserStore = (req, res) => {
                 ON bank.iduser = user.iduser 
             WHERE user.iduser=?`, [id], function (err, rows) {
             if (err) {
-                res.status(500).send({
+                res.status(500).json({
                     status: false,
                     data: err
                 })
             } else {
-                res.status(200).send({
+                res.status(200).json({
                     status: true,
                     data: rows
                 })
             }
         })
     } catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             status: false,
             data: error
         })
@@ -165,19 +165,19 @@ const inputBank = (req, res) => {
             [post.iduser, post.idstore, post.norek, post.namabank, post.nama, post.terdaftar, post.terupdate],
             function (err, rows) {
                 if (err) {
-                    res.status(500).send({
+                    res.status(500).json({
                         status: false,
                         data: err
                     })
                 } else {
-                    res.status(200).send({
+                    res.status(200).json({
                         status: true,
                         data: 'Berhasil di input'
                     })
                 }
             })
     } catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             status: false,
             data: error
         })
@@ -201,19 +201,19 @@ const updateBank = (req, res) => {
             [update.idstore, update.norek, update.namabank, update.nama, update.terupdate],
             function (err, rows) {
                 if (err) {
-                    res.status(500).send({
+                    res.status(500).json({
                         status: false,
                         data: err
                     })
                 } else {
-                    res.status(200).send({
+                    res.status(200).json({
                         status: true,
                         data: 'Berhasil di update'
                     })
                 }
             })
     } catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             status: false,
             data: error
         })
@@ -227,19 +227,19 @@ const deleteBank = (req, res) => {
     try {
         db.query(`DELETE FROM bank WHERE idbank=?`, [id], function (err, rows) {
             if (err) {
-                res.status(500).send({
+                res.status(500).json({
                     status: false,
                     data: err
                 })
             } else {
-                res.status(200).send({
+                res.status(200).json({
                     status: true,
                     data: 'Delete berhasil'
                 })
             }
         })
     } catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             status: false,
             data: error
         })

@@ -33,14 +33,14 @@ const register = (req, res) => {
                     if (err) {
                         console.log(err)
                     } else {
-                        res.status(200).send({
+                        res.status(200).json({
                             status: true,
                             data: "Berhasil Mendaftar"
                         })
                     }
                 })
             } else {
-                res.status(200).send({
+                res.status(200).json({
                     status: false,
                     data: "Email sudah terdaftar!!"
                 })

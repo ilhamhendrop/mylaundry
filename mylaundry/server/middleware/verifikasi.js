@@ -50,7 +50,7 @@ const pemilik = (req, res, next) => {
                     req.auth = decoded
                     next()
                 } else {
-                    return res.status(401).send({
+                    return res.status(401).json({
                         status: false,
                         message: 'Gagal masuk'
                     })
@@ -58,7 +58,7 @@ const pemilik = (req, res, next) => {
             }
         })
     } else {
-        return res.status(401).send({
+        return res.status(401).json({
             status: false,
             data: "Token tidak tersedia"
         })
@@ -73,7 +73,7 @@ const user = (req, res, next) => {
         var token = tokenWithBearer.split(' ')[1]
         jwt.verify(token, config.secret, function (err, decoded) {
             if (err) {
-                return res.status(401).send({
+                return res.status(401).json({
                     status: false,
                     data: "Token tidak terdaftar"
                 })
@@ -82,7 +82,7 @@ const user = (req, res, next) => {
                     req.auth = decoded
                     next()
                 } else {
-                    return res.status(401).send({
+                    return res.status(401).json({
                         status: false,
                         message: 'Gagal masuk'
                     })
@@ -90,7 +90,7 @@ const user = (req, res, next) => {
             }
         })
     } else {
-        return res.status(401).send({
+        return res.status(401).json({
             status: false,
             data: "Token tidak tersedia"
         })

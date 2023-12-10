@@ -21,19 +21,19 @@ const dataAlamat = (req, res) => {
         WHERE user.iduser=?`, [id],
             function (err, rows) {
                 if (err) {
-                    res.status(500).send({
+                    res.status(500).json({
                         status: false,
                         data: err
                     })
                 } else {
-                    res.status(200).send({
+                    res.status(200).json({
                         status: true,
                         data: rows
                     })
                 }
             })
     } catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             status: false,
             data: error
         })
@@ -60,19 +60,19 @@ const inputAlamat = (req, res) => {
             [post.iduser, post.notelp, post.alamat, post.rtrw, post.kelurahan, post.kecamatan, post.provinsi, post.terdaftar, post.terupdate],
             function (err, rows) {
                 if (err) {
-                    res.status(500).send({
+                    res.status(500).json({
                         status: false,
                         data: err
                     })
                 } else {
-                    res.status(200).send({
+                    res.status(200).json({
                         status: true,
                         data: 'Data berhasil di input'
                     })
                 }
             })
     } catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             status: false,
             data: error
         })
@@ -99,19 +99,19 @@ const updateAlamat = (req, res) => {
             [update.notelp, update.alamat, update.rtrw, update.kelurahan, update.kecamatan, update.provinsi, update.terupdate, update.id],
             function (err, rows) {
                 if (err) {
-                    res.status(500).send({
+                    res.status(500).json({
                         status: false,
                         data: err
                     })
                 } else {
-                    res.status(200).send({
+                    res.status(200).json({
                         status: true,
                         data: 'Data berhasil diupdate'
                     })
                 }
             })
     } catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             status: false,
             data: error
         })
@@ -125,19 +125,19 @@ const deleteAlamat = (req, res) => {
         db.query(`DELETE FROM address WHERE idaddress=?`, [id],
             function (err, rows) {
                 if (err) {
-                    res.status(500).send({
+                    res.status(500).json({
                         status: false,
                         data: err
                     })
                 } else {
-                    res.status(200).send({
+                    res.status(200).json({
                         status: true,
                         data: 'Data berhasil dihapus'
                     })
                 }
             })
     } catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             status: false,
             data: error
         })

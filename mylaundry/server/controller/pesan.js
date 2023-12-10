@@ -34,12 +34,12 @@ const dataAdminPesan = (req, res) => {
                 ON pesan.idbank = bank.idbank
             ORDER BY user.iduser`, function (err, rows) {
             if (err) {
-                res.status(500).send({
+                res.status(500).json({
                     status: false,
                     data: err
                 })
             } else {
-                res.status(200).send({
+                res.status(200).json({
                     status: true,
                     data: rows
                 })
@@ -47,7 +47,7 @@ const dataAdminPesan = (req, res) => {
         })
 
     } catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             status: false,
             data: error
         })
@@ -89,19 +89,19 @@ const dataUserPesan = (req, res) => {
                 ON pesan.idbank = bank.idbank
             WHERE user.iduser=?`, [id], function (err, rows) {
             if (err) {
-                res.status(500).send({
+                res.status(500).json({
                     status: false,
                     data: err
                 })
             } else {
-                res.status(200).send({
+                res.status(200).json({
                     status: true,
                     data: rows
                 })
             }
         })
     } catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             status: false,
             data: error
         })
@@ -141,12 +141,12 @@ const dataPemilikStore = (req, res) => {
                 ON pesan.idbank = bank.idbank
             ORDER BY user.iduser`, function (err, rows) {
             if (err) {
-                res.status(500).send({
+                res.status(500).json({
                     status: false,
                     data: err
                 })
             } else {
-                res.status(200).send({
+                res.status(200).json({
                     status: true,
                     data: rows
                 })
@@ -154,7 +154,7 @@ const dataPemilikStore = (req, res) => {
         })
 
     } catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             status: false,
             data: error
         })
@@ -183,19 +183,19 @@ const inputPesan = (req, res) => {
             [post.iduser, post.idstore, post.idproduk, post.idaddress, post.idbank, post.jumlah, post.total, post.status, post.terdaftar, post.terupdate],
             function (err, rows) {
                 if (err) {
-                    res.status(500).send({
+                    res.status(500).json({
                         status: false,
                         data: err
                     })
                 } else {
-                    res.status(200).send({
+                    res.status(200).json({
                         status: true,
                         data: 'Berhasil order'
                     })
                 }
             })
     } catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             status: false,
             data: error
         })
@@ -215,19 +215,19 @@ const updateStatusOder = (req, res) => {
         db.query(`UPDATE pesan SET status=?, terupdate=? WHERE iduser=?`,
             [update.status, update.terupdate, update.id], function (err, rows) {
                 if (err) {
-                    res.status(500).send({
+                    res.status(500).json({
                         status: false,
                         data: err
                     })
                 } else {
-                    res.status(200).send({
+                    res.status(200).json({
                         status: true,
                         data: 'Berhasil update'
                     })
                 }
             })
     } catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             status: false,
             data: error
         })

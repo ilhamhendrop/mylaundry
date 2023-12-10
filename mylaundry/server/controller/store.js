@@ -19,19 +19,19 @@ const dataAdminStore = (req, res) => {
             ORDER BY user.iduser`,
             function (err, rows, fields) {
                 if (err) {
-                    res.status(500).send({
+                    res.status(500).json({
                         status: false,
                         data: err
                     })
                 } else {
-                    res.status(200).send({
+                    res.status(200).json({
                         status: true,
                         data: rows
                     })
                 }
             })
     } catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             status: false,
             data: error
         })
@@ -42,19 +42,19 @@ const dataUserStore = (req, res) => {
     try {
         db.query('SELECT * FROM store', function (err, rows) {
             if (err) {
-                res.status(500).send({
+                res.status(500).json({
                     status: false,
                     data: err
                 })
             } else {
-                res.status(200).send({
+                res.status(200).json({
                     status: true,
                     data: rows
                 })
             }
         })
     } catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             status: false,
             data: error
         })
@@ -80,12 +80,12 @@ const inputStore = (req, res) => {
         VALUE (?,?,?,?,?,?,?,?)`, [post.iduser, post.nama, post.alamat, post.rtrw, post.kelurahan, post.kecamatan, post.provinsi],
             function (err, rows, fields) {
                 if (err) {
-                    res.status(500).send({
+                    res.status(500).json({
                         status: false,
                         data: err
                     })
                 } else {
-                    res.status(200).send({
+                    res.status(200).json({
                         status: true,
                         data: 'Data Berhasil Di Input'
                     })
@@ -106,12 +106,12 @@ const dataPemilikStore = (req, res) => {
         db.query(`SELECT * FROM store WHERE iduser=?`, [id],
             function (err, rows) {
                 if (err) {
-                    res.status(500).send({
+                    res.status(500).json({
                         status: false,
                         data: err
                     })
                 } else {
-                    res.status(200).send({
+                    res.status(200).json({
                         status: true,
                         data: rows
                     })
@@ -141,19 +141,19 @@ const updateStore = (req, res) => {
             [post.nama, post.alamat, post.rtrw, post.kelurahan, post.kecamatan, post.provinsi, post.id],
             function (err, rows) {
                 if (err) {
-                    res.status(500).send({
+                    res.status(500).json({
                         status: false,
                         data: err
                     })
                 } else {
-                    res.status(200).send({
+                    res.status(200).json({
                         status: true,
                         data: 'Berhasil di update'
                     })
                 }
             })
     } catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             status: false,
             data: error
         })
@@ -169,19 +169,19 @@ const deleteStore = (req, res) => {
         db.query(`DELETE FROM store idstore=?`, [hapus.iduser, hapus.id],
             function (err, rows) {
                 if (err) {
-                    res.status(500).send({
+                    res.status(500).json({
                         status: false,
                         data: err
                     })
                 } else {
-                    res.status(200).send({
+                    res.status(200).json({
                         status: true,
                         data: 'Data berhasil terhapus'
                     })
                 }
             })
     } catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             status: false,
             data: error
         })

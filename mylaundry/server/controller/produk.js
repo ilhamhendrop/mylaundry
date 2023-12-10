@@ -7,19 +7,19 @@ const dataAllProduk = (req, res) => {
         db.query(`SELECT * FROM produk WHERE idstore=?`, [id],
             function (err, rows) {
                 if (err) {
-                    res.status(500).send({
+                    res.status(500).json({
                         status: false,
                         data: err
                     })
                 } else {
-                    res.status(200).send({
+                    res.status(200).json({
                         status: true,
                         data: rows
                     })
                 }
             })
     } catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             status: false,
             data: error
         })
@@ -40,19 +40,19 @@ const inputProduk = (req, res) => {
         db.query(`INSERT INTO produk (idstore, nama, price, terdaftar) VALUE (?,?,?,?)`, [post.idstore, post.nama, post.price, post.terdaftar],
             function (err, rows) {
                 if (err) {
-                    res.status(500).send({
+                    res.status(500).json({
                         status: false,
                         data: err
                     })
                 } else {
-                    res.status(200).send({
+                    res.status(200).json({
                         status: true,
                         data: 'Input Data Berhasil'
                     })
                 }
             })
     } catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             status: false,
             data: error
         })
@@ -70,19 +70,19 @@ const updateProduk = (req, res) => {
         db.query(`UPDATE produk SET nama=?, price=? WHERE idproduk=?`, [update.nama, update.price, update.id],
             function (err, rows) {
                 if (err) {
-                    res.status(500).send({
+                    res.status(500).json({
                         status: false,
                         data: err
                     })
                 } else {
-                    res.status(200).send({
+                    res.status(200).json({
                         status: true,
                         data: 'Update data berhasil'
                     })
                 }
             })
     } catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             status: false,
             data: error
         })
@@ -96,19 +96,19 @@ const deleteProduk = (req, res) => {
         db.query(`DELETE FROM produk WHERE idproduk=?`, [id],
             function (err, rows) {
                 if (err) {
-                    res.status(500).send({
+                    res.status(500).json({
                         status: false,
                         data: err
                     })
                 } else {
-                    res.status(200).send({
+                    res.status(200).json({
                         status: true,
                         data: 'Data berhasil dihapus'
                     })
                 }
             })
     } catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             status: false,
             data: error
         })
