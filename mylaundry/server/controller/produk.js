@@ -93,20 +93,20 @@ const deleteProduk = (req, res) => {
     var id = req.params.id
 
     try {
-        db.query(`DELETE FROM produk WHERE idproduk=?`, [id], 
-        function (err, rows) {
-            if (err) {
-                res.status(500).send({
-                    status: false,
-                    data: err
-                })
-            } else {
-                res.status(200).send({
-                    status: true,
-                    data: 'Data berhasil dihapus'
-                })
-            }
-        })
+        db.query(`DELETE FROM produk WHERE idproduk=?`, [id],
+            function (err, rows) {
+                if (err) {
+                    res.status(500).send({
+                        status: false,
+                        data: err
+                    })
+                } else {
+                    res.status(200).send({
+                        status: true,
+                        data: 'Data berhasil dihapus'
+                    })
+                }
+            })
     } catch (error) {
         res.status(500).send({
             status: false,
